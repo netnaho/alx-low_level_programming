@@ -11,7 +11,6 @@
  * Description: singly linked list node structure
  * for Holberton project
  */
-int _putchar(char c);
 typedef struct list_s
 {
 	char *str;
