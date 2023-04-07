@@ -1,20 +1,23 @@
 #include "main.h"
 
 /**
- * get_bit - returns the value of the bit at a given index.
- *
- * @n: the unsigned long int to check.
- * @index: the index of the bit to get (0 is the least significant bit).
- *
- * Return: the value of the bit at the given index (0 or 1), or -1 if an error occurred.
+ * get_bit - get bit at index
+ * @n: number
+ * @index: index within binary number
+ * Return: bit 0 or 1, or -1 if error
  */
 int get_bit(unsigned long int n, unsigned int index)
 {
-	if (index >= (sizeof(unsigned long int) * 8))
+	int the_bit, the_bin;
+
+	if (index > (sizeof(unsigned long int) * 8))
 		return (-1);
 
-	unsigned long int mask = 1UL << index;
-	unsigned long int masked_n = n & mask;
+	the_bin = n >> index;
 
-	return (masked_n != 0) ? 1 : 0;
+	the_bit = the_bin & 1;
+
+	return (the_bit);
+
+}
 }
