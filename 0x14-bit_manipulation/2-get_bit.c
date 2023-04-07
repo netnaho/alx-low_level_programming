@@ -10,7 +10,7 @@ int get_bit(unsigned long int n, unsigned int index)
 {
 	int the_bit, the_bin;
 
-	if (index > (sizeof(unsigned long int) * 8))
+	if ((index / (sizeof(unsigned long int) * 8)) > 0 || index >= (sizeof(unsigned long int) * 8))
 		return (-1);
 
 	the_bin = n >> index;
