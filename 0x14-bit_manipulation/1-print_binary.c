@@ -17,14 +17,11 @@ void print_binary(unsigned long int n)
 			started = 1;
 			_putchar('1');
 		}
-		else if (started) 
+		else if (started)
 			_putchar('0');
-		
 		mask >>= 1;
 	}
 
 	if (!started)
-	
 		_putchar('0');
-	
 }
