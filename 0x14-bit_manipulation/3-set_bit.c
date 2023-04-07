@@ -8,14 +8,13 @@
  */
 int set_bit(unsigned long int *n, unsigned int index)
 {
-	unsigned long int num = 1;
+	unsigned long int number = 1;
 
 	if (index > (sizeof(unsigned long int) * 8))
 		return (-1);
 
-	num <<= index;/*shift the value in set left by 1 bit.*/
-	/*num <<= index is the same as num = num << index*/
+	number <<= index;
 
-	*n = *n | num;/*bitwise OR operator*/
+	*n = *n | number;
 	return (1);
 }
