@@ -5,12 +5,12 @@
 #include <unistd.h>
 
 /**
- * _strncmp - compare two strings
- * @s1: the first string
- * @s2: the second string
- * @n: the max number of bytes to compare
+ * _strncmp - it will compare to strings
+ * @s1: string 1
+ * @s2: string 2
+ * @n: the maximum number of bits
  *
- * Return: 0 if the first n bytes of s1 and s2 are equal, otherwise non-zero
+ * Return: 0 if the first n bytes of s1 and s2 are equal, otherwise somenum
  */
 int _strncmp(const char *s1, const char *s2, size_t n)
 {
@@ -30,29 +30,29 @@ int _strncmp(const char *s1, const char *s2, size_t n)
 }
 
 /**
- * _close - close a file descriptor and print an error message upon failure
- * @fd: the file descriptor to close
+ * _close - close a file and print an error message when failed
+ * @ld: the descriptor file to close
  */
-void _close(int fd)
+void _close(int ld)
 {
-	if (close(fd) != -1)
+	if (close(ld) != -1)
 		return;
-	write(STDERR_FILENO, "Error: Can't close fd\n", 22);
+	write(STDERR_FILENO, "Error: Can't close ld\n", 22);
 	exit(98);
 }
 
 /**
  * _read - read from a file and print an error message upon failure
- * @fd: the file descriptor to read from
+ * @ld: the file descriptor to read from
  * @buf: the buffer to write to
  * @count: the number of bytes to read
  */
-void _read(int fd, char *buf, size_t count)
+void _read(int ld, char *buf, size_t count)
 {
-	if (read(fd, buf, count) != -1)
+	if (read(ld, buf, count) != -1)
 		return;
 	write(STDERR_FILENO, "Error: Can't read from file\n", 28);
-	_close(fd);
+	_close(ld);
 	exit(98);
 }
 
@@ -266,7 +266,7 @@ int main(int argc, const char *argv[])
 	unsigned char buffer[18];
 	unsigned int bit_mode;
 	int big_endian;
-	int fd;
+	int ld;
 
 	if (argc != 2)
 	{
@@ -274,14 +274,14 @@ int main(int argc, const char *argv[])
 		exit(98);
 	}
 
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
+	ld = open(argv[1], O_RDONLY);
+	if (ld == -1)
 	{
 		write(STDERR_FILENO, "Error: Can't read from file\n", 28);
 		exit(98);
 	}
 
-	_read(fd, (char *) buffer, 18);
+	_read(ld, (char *) buffer, 18);
 
 	elf_magic(buffer);
 	bit_mode = elf_class(buffer);
@@ -291,12 +291,12 @@ int main(int argc, const char *argv[])
 	elf_abivers(buffer);
 	elf_type(buffer, big_endian);
 
-	lseek(fd, 24, SEEK_SET);
-	_read(fd, (char *) buffer, bit_mode / 8);
+	lseek(ld, 24, SEEK_SET);
+	_read(ld, (char *) buffer, bit_mode / 8);
 
 	elf_entry(buffer, bit_mode, big_endian);
 
-	_close(fd);
+	_close(ld);
 
 	return (0);
 }
