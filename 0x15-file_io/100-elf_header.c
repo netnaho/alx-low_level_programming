@@ -57,8 +57,8 @@ void _read(int ld, char *buf, size_t count)
 }
 
 /**
- * elf_magic - print ELF magic
- * @buffer: the ELF header
+ * elf_magic - ELF will be printed
+ * @buffer: the header of ELF
  */
 void elf_magic(const unsigned char *buffer)
 {
@@ -77,10 +77,10 @@ void elf_magic(const unsigned char *buffer)
 }
 
 /**
- * elf_class - print ELF class
- * @buffer: the ELF header
+ * elf_class - class ELF will be printed
+ * @buffer: header will be printed
  *
- * Return: bit mode (32 or 64)
+ * Return: mode of bit (32 or 64)
  */
 size_t elf_class(const unsigned char *buffer)
 {
@@ -101,10 +101,10 @@ size_t elf_class(const unsigned char *buffer)
 }
 
 /**
- * elf_data - print ELF data
- * @buffer: the ELF header
+ * elf_data - ELF data
+ * @buffer: ELF header
  *
- * Return: 1 if big endian, otherwise 0
+ * Return: 1 if big endian otherwise 0
  */
 int elf_data(const unsigned char *buffer)
 {
@@ -125,8 +125,8 @@ int elf_data(const unsigned char *buffer)
 }
 
 /**
- * elf_version - print ELF version
- * @buffer: the ELF header
+ * elf_version - ELF version
+ * @buffer: ELF header
  */
 void elf_version(const unsigned char *buffer)
 {
@@ -139,8 +139,8 @@ void elf_version(const unsigned char *buffer)
 }
 
 /**
- * elf_osabi - print ELF OS/ABI
- * @buffer: the ELF header
+ * elf_osabi - ELF OS/ABI
+ * @buffer: ELF header
  */
 void elf_osabi(const unsigned char *buffer)
 {
@@ -175,8 +175,8 @@ void elf_osabi(const unsigned char *buffer)
 }
 
 /**
- * elf_abivers - print ELF ABI version
- * @buffer: the ELF header
+ * elf_abivers - ELF ABI version
+ * @buffer: ELF header
  */
 void elf_abivers(const unsigned char *buffer)
 {
@@ -184,9 +184,9 @@ void elf_abivers(const unsigned char *buffer)
 }
 
 /**
- * elf_type - print ELF type
- * @buffer: the ELF header
- * @big_endian: endianness (big endian if non-zero)
+ * elf_type - ELF type
+ * @buffer: ELF header
+ * @big_endian: endianness big endian if non-zero
  */
 void elf_type(const unsigned char *buffer, int big_endian)
 {
@@ -217,10 +217,10 @@ void elf_type(const unsigned char *buffer, int big_endian)
 }
 
 /**
- * elf_entry - print entry point address
+ * elf_entry - entry address
  * @buffer: string containing the entry point address
- * @bit_mode: bit mode (32 or 64)
- * @big_endian: endianness (big endian if non-zero)
+ * @bit_mode: bit mode 32 or 64
+ * @big_endian: endianness big endian if non-zero
  */
 void elf_entry(const unsigned char *buffer, size_t bit_mode, int big_endian)
 {
@@ -259,7 +259,7 @@ void elf_entry(const unsigned char *buffer, size_t bit_mode, int big_endian)
  * @argc: the argument count
  * @argv: the argument values
  *
- * Return: Always 0
+ * Return: return 0
  */
 int main(int argc, const char *argv[])
 {
