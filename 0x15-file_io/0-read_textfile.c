@@ -4,38 +4,38 @@
 #include "main.h"
 
 /**
- * read_textfile - prints and reads from a file
- * @filename: the path to file
- * @letters: the charachters to be read
- * Return: read charachters
+ * read_textfile - reads and prints from a file
+ * @filename: path to file
+ * @letters: chars to read
+ * Return: chars read
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int FD;
+	int fd;
 	char *nahh;
 	ssize_t bytes, r;
 
 	if (!filename)
 		return (0);
 	fd = open(filename, O_RDONLY);
-	if (FD == -1)
+	if (fd == -1)
 	{
-		close(FD);
+		close(fd);
 		return (0);
 	}
 
 	nahh = malloc(sizeof(char) * letters);
 	if (!nahh)
 	{
-		close(FD);
+		close(fd);
 		return (0);
 	}
 
-	bytes = read(FD, nahh, letters);
+	bytes = read(fd, nahh, letters);
 
 	if (bytes == -1)
 	{
-		close(FD);
+		close(fd);
 		free(nahh);
 		return (0);
 	}
@@ -44,10 +44,10 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 	if (r == -1)
 	{
-		close(FD);
+		close(fd);
 		free(nahh);
 		return (0);
 	}
-	close(FD);
+	close(fd);
 	return (bytes);
 }
