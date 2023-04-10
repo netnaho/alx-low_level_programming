@@ -8,42 +8,42 @@
 #define WRITE_ERR "Error: Can't write to %s\n"
 
 /**
- * main - the main function to run
- * @argc: number of arguments
+ * main - the main function.
+ * @argc: number of argument
  * @argv: arguments
  * Return: return 0.
  */
 int main(int argc, char **argv)
 {
-	int from, upto, right_close, k, h;
+	int from, to, close_on, k, l;
 	char buffer[1024];
 
 	if (argc != 3)
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n"), exit(97);
-	upto = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);
-	if (upto == -1)
+	to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);
+	if (to == -1)
 		dprintf(STDERR_FILENO, WRITE_ERR, argv[2]), exit(99);
 	from = open(argv[1], O_RDONLY);
 	if (from == -1)
 		dprintf(STDERR_FILENO, READ_ERR, argv[1]), exit(98);
 	while (1)
 	{
-		h = read(from, buffer, 1024);
-		if (h == -1)
+		l = read(from, buffer, 1024);
+		if (l == -1)
 			dprintf(STDERR_FILENO, READ_ERR, argv[1]), exit(98);
-		if (h > 0)
+		if (l > 0)
 		{
-			k = write(upto, buffer, h);
+			k = write(to, buffer, l);
 			if (k == -1)
 				dprintf(STDERR_FILENO, WRITE_ERR, argv[2]), exit(99);
 		} else
 			break;
 	}
-	right_close = close(from);
-	if (right_close == -1)
+	close_on = close(from);
+	if (close_on == -1)
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", from), exit(100);
-	right_close = close(to);
-	if (right_close == -1)
+	close_on = close(to);
+	if (close_on == -1)
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", to), exit(100);
 	return (0);
 }
