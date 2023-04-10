@@ -4,50 +4,50 @@
 #include "main.h"
 
 /**
- * read_textfile - reads and prints from a file
- * @filename: path to file
- * @letters: chars to read
- * Return: chars read
+ * read_textfile - prints and reads from a file
+ * @filename: the path to file
+ * @letters: the charachters to be read
+ * Return: read charachters
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int fd;
-	char *buff;
+	int FD;
+	char *nahh;
 	ssize_t bytes, r;
 
 	if (!filename)
 		return (0);
 	fd = open(filename, O_RDONLY);
-	if (fd == -1)
+	if (FD == -1)
 	{
-		close(fd);
+		close(FD);
 		return (0);
 	}
 
-	buff = malloc(sizeof(char) * letters);
-	if (!buff)
+	nahh = malloc(sizeof(char) * letters);
+	if (!nahh)
 	{
-		close(fd);
+		close(FD);
 		return (0);
 	}
 
-	bytes = read(fd, buff, letters);
+	bytes = read(FD, nahh, letters);
 
 	if (bytes == -1)
 	{
-		close(fd);
-		free(buff);
+		close(FD);
+		free(nahh);
 		return (0);
 	}
 
-	r = write(STDOUT_FILENO, buff, bytes);
+	r = write(STDOUT_FILENO, nahh, bytes);
 
 	if (r == -1)
 	{
-		close(fd);
-		free(buff);
+		close(FD);
+		free(nahh);
 		return (0);
 	}
-	close(fd);
+	close(FD);
 	return (bytes);
 }
